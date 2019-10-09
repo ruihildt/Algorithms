@@ -3,7 +3,20 @@
 import argparse
 
 def find_max_profit(prices):
-  pass
+  possible_wins=[]
+  # loop through all resale prices
+  for i in range(len(prices)-1):
+    # make a list of possible resale price for a day
+    resale_prices = prices[i+1:]
+    # calculate the amount you can get for each subsequent day
+    for resale_p in resale_prices:
+      diff = resale_p - prices[i]
+      possible_wins.append(diff)
+
+  # find the max of all values
+  max_profit = max(possible_wins)
+
+  return max_profit
 
 
 if __name__ == '__main__':
