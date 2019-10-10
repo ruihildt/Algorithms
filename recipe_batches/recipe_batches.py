@@ -3,32 +3,27 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass
-  # Check if all ingredients from the recipe are available, if not, return 0
-  # for key, value in recipe.items()
-  ing_keys = ingredients.keys()
-  recipe_keys = recipe.keys()
+  # Loop through recipe for all ingredients and quantity
+  max_batches = []
+  for ingredient, quantity in recipe.items():
+    # Check if all ingredients from the recipe are available, if not, return 0
+    if ingredient in ingredients:
+      # Check how many full batch we can make with each ingredient
+      batches = int(ingredients[ingredient] / recipe[ingredient])
+      # If there's a mininmum of 1 batch, add it to the max list, if not, return 0
+      if 1 <= batches:
+        max_batches.append(batches)
+    else:
+      return 0
 
-  for item in (ing_keys and recipe_keys):
-    print(str(item))
+  # Return max number of batch
+  max_batch = min(max_batches)
 
+  return max_batch
 
-
-  # Check how many times each ingredient is present in quantity
-
-  # If > 0, check what is the smallest number and return it
-  return True
-
-
-rec = { 'milk': 100, 'butter': 50, 'flour': 5 }
-ing = { 'milk': 132, 'butter': 48, 'flour': 51 }
-
-test = recipe_batches(rec,ing)
-print(test)
-
-# if __name__ == '__main__':
-#   # Change the entries of these dictionaries to test 
-#   # your implementation with different inputs
-#   recipe = { 'milk': 100, 'butter': 50, 'flour': 5 }
-#   ingredients = { 'milk': 132, 'butter': 48, 'flour': 51 }
-#   print("{batches} batches can be made from the available ingredients: {ingredients}.".format(batches=recipe_batches(recipe, ingredients), ingredients=ingredients))
+if __name__ == '__main__':
+  # Change the entries of these dictionaries to test 
+  # your implementation with different inputs
+  recipe = { 'milk': 100, 'butter': 50, 'flour': 5 }
+  ingredients = { 'milk': 132, 'butter': 48, 'flour': 51 }
+  print("{batches} batches can be made from the available ingredients: {ingredients}.".format(batches=recipe_batches(recipe, ingredients), ingredients=ingredients))
